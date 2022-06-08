@@ -1,0 +1,66 @@
+
+{% extends 'index.html' %}
+{% load static %}
+
+{% block destination %} active {% endblock %}
+
+{% block page %}
+
+ <!-- Header -->
+        <header class="inner-page-header inner-page-header-1">
+            <div class="inner-header-shape"></div>
+            <!-- header-content -->
+            <div class="container">
+                <div class="header-content m-auto">
+                    <h1>{{region.region}}</h1>
+                </div>
+            </div>
+        </header>
+        <!-- Header -->
+        <!-- Destination -->
+        <section class="destination-section pt-100 pb-70 position-relative">
+            <div class="map-shapes">
+                <div class="map-shape map-shape-1 map-shape-top">
+                    <img src="{% static 'assets/images/shapes/map-1.png'%}" alt="shape">
+                </div>
+                <div class="map-shape map-shape-2 map-shape-bottom">
+                    <img src="{% static 'assets/images/shapes/map-2.png'%}" alt="shape">
+                </div>
+            </div>
+            <div class="container">
+                <div class="forum-main-image">
+                    <img src="{{region.image.url}}" alt="destination">
+                </div>
+                <div class="row">
+                    <div class="col-lg-9 pb-30 desk-pad-right-40">
+                        <div class="forum-details">
+                            {% for r in region.destinations.all %}
+                            <h3>{{r.title}}</h3>
+
+                            <div class="row">
+                                {%for i in r.images.all %}
+
+                                <div class="col-6 col-sm-4 col-lg-4">
+                                    <div class="forum-details-inner-image">
+                                        <a href="{{i.image.url}}">
+                                        <img src="{{i.image.url}}" alt="destination">
+                                            </a>
+                                    </div>
+                                </div>
+                                {%endfor%}
+
+
+
+                            </div>
+
+                            <p>{{r.text}}</p>
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Destination -->
+
+ {%endblock%}

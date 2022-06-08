@@ -1,0 +1,67 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{%block about%} active {% endblock %}
+{% block contact %} active {% endblock %}
+
+{% block page %}
+
+
+<!-- Header -->
+        <header class="inner-page-header inner-page-header-3">
+            <div class="inner-header-shape"></div>
+            <!-- header-content -->
+            <div class="container">
+                <div class="header-content m-auto">
+                    <h1>Contact</h1>
+
+                </div>
+            </div>
+        </header>
+        <!-- Header -->
+        <!-- Contact -->
+        <div class="contact-section pt-100 pb-70 position-relative">
+            <div class="map-shapes">
+                <div class="map-shape map-shape-1 map-shape-top">
+                    <img src="{% static 'assets/images/shapes/map-1.png'%}" alt="shape">
+                </div>
+                <div class="map-shape map-shape-2 map-shape-bottom">
+                    <img src="{% static 'assets/images/shapes/map-2.png'%}" alt="shape">
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4 pb-30">
+                        <div class="contact-info-item desk-pad-right-10">
+                            <small>Address Of</small>
+                            <h2>Song-Kol Adventure</h2>
+                            {% for c in contact %}
+                            <ul>
+                                <li>
+                                    <i class="flaticon-mail"></i>
+                                    <a href="#"><span data-cfemail="bfd7dad3d3d0d9cdded1dcd7ffcbcdded6cf91dcd0d2">{{c.email}}</span></a>
+                                </li>
+                                <li>
+                                    <i class="flaticon-telephone"></i>
+                                    <a href="tel:{{c.phone}}">{{c.phone}}</a>
+                                </li>
+                                <li>
+                                    <i class="flaticon-address"></i>
+                                    {{c.address}}
+                                </li>
+                            </ul>
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Contact -->
+        <!-- Iframe -->
+        <div class="contact-map-iframe mb-100">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46816.06449471131!2d74.49192312501854!3d42.83052866436091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec96b349ecced%3A0x4cbdc9830ac5580e!2z0JvQtdC90LjQvdGB0LrQuNC5INGA0LDQudC-0L0sINCR0LjRiNC60LXQug!5e0!3m2!1sru!2skg!4v1651156464130!5m2!1sru!2skg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- Iframe -->
+{%endblock%}

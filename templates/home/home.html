@@ -1,0 +1,351 @@
+{% extends 'index.html' %}
+{% load static %}
+{%block home %} active {%endblock%}
+
+{%block page%}
+<!-- Header -->
+<header class="header-banner fixed-header-banner">
+    <!--            <div class="booking-search">-->
+    <!--                <form>-->
+    <!--                    -->
+    <!--                </form>-->
+    <!--            </div>-->
+    <!-- header-content -->
+    <div class="container-fluid">
+        <div class="header-content">
+            {%for b in banner%}
+            <h1>{{b.title}}</h1>
+            {%endfor%}
+            <a href="{% url 'tour' %}" class="btn main-btn main-btn-arrow">View tours <i
+                    class="flaticon-right-arrow"></i></a>
+        </div>
+    </div>
+    <div class="scroll-parallax" id="parallax">
+        <div class="parallax-layer parallax-layer-0 parallax" data-speed="66">
+            <img src="{% static 'assets/images/homepage-1/1.jpg' %}" alt="header">
+        </div>
+        <!--                <div class="parallax-layer parallax-layer-1 parallax" data-speed="50">-->
+        <!--                     <img src="{% static 'assets/images/homepage-1/header-part-4.png' %}" alt="header">-->
+        <!--                </div>-->
+        <!--                <div class="parallax-layer parallax-layer-2 parallax" data-speed="40">-->
+        <!--                     <img src="{% static 'assets/images/homepage-1/header-part-3.png' %}' %}" alt="header">-->
+        <!--                </div>-->
+        <!--                <div class="parallax-layer parallax-layer-3 parallax" data-speed="33">-->
+        <!--                     <img src="{% static 'assets/images/homepage-1/header-part-2.png' %}" alt="header">-->
+        <!--                </div>-->
+        <!--                <div class="parallax-layer parallax-layer-4 parallax" data-speed="20">-->
+        <!--                     <img src="{% static 'assets/images/homepage-1/header-part-1.png' %}" alt="header">-->
+        <!--                </div>-->
+        <div class="parallax-layer parallax-cover"></div>
+    </div>
+</header>
+<!-- Header -->
+
+<!-- Destination -->
+<section class="destination-section pb-100">
+    <div class="container">
+        <div class="section-title">
+            <small>The Top Places For</small>
+            <h2>Planning Your Holiday</h2>
+        </div>
+        <div class="row">
+            {%for r in region%}
+            <div class="col-sm-6 col-lg-4 col-xl-4 pb-30">
+                <div class="destination-card-full">
+                    <div class="destination-card-image">
+                        <img src="{{r.image.url}}" alt="destination">
+                        <h3 class="destination-card-name">{{r.region}}</h3>
+                    </div>
+                    <div class="card-1-content">
+                        <div class="card-1-info">
+                            <h3>
+                                <a href="{% url 'destination' r.pk%}">{{r.region}}</a>
+                            </h3>
+
+                        </div>
+                        <p>{{r.text|truncatechars:80}}</p>
+                    </div>
+                    <div class="destination-card-link">
+                        <a href="{% url 'destination' r.pk%}"><i class="flaticon-export"></i></a>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+        <!-- pagination -->
+
+    </div>
+</section>
+<!-- Destination -->
+<!-- Tour -->
+<section class="tour-section bg-offwhite pt-100 pb-70 animate-section position-relative overflow-hidden"
+         id="animateSection">
+    <div class="radial-animation-shape radial-animation-shape-active">
+        <img src="{% static 'assets/images/shapes/compass.png' %}" alt="compass">
+    </div>
+    <div class="container-fluid custom-container-fluid position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-6 pb-30">
+                <div class="max-685 ms-auto me-auto me-lg-0">
+                    <div class="section-title section-title-left about-title">
+                        <small>We Are Specialized In</small>
+                        <h2>Tour & Travel Arrangement</h2>
+                    </div>
+                    <div class="about-content-item">
+                        <div class="about-content-thumb">
+                            <i class="flaticon-map"></i>
+                        </div>
+                        <div class="about-content-texts">
+                            <h3>We Can Be A Great Travel Planner For You</h3>
+                            {% for a in abouts %}
+                            <p>{{ a.favorite_text }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="text-center text-lg-start">
+                        <a href="{%url 'about' %}" class="btn main-btn main-btn-arrow">Discover More <i
+                                class="flaticon-right-arrow"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 pb-30">
+                <div class="about-content-image text-center">
+                    <img src="{% static 'assets/images/tour-about1.png' %}" alt="about">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Tour -->
+<!-- Popular Package -->
+<section class="popular-package-section pt-100 pb-80 line-shape-bg">
+    <div class="container">
+        <div class="section-title section-title-lg">
+            <small>Popular Package</small>
+            <h2>Amazing Tours Liked By The Adventurous</h2>
+        </div>
+    </div>
+    <div class="popular-package-carousel owl-carousel">
+        {%for t in tour%}
+        <div class="item">
+            <div class="card-2">
+                <div class="card-2-image">
+                    <a href="{% url 'tour' t.pk%}">
+                        <img src="{{t.image.url}}" alt="popular package">
+                    </a>
+                </div>
+                <div class="card-2-content">
+                    <ul class="card-2-entry">
+                        <li>
+                            <i class="flaticon-calendar"></i>
+                            {{t.tour_days}} days
+                        </li>
+                    </ul>
+                    <div class="card-2-info">
+                        <h3>
+                            <a href="{% url 'tour' t.pk%}">{{t.title}}</a>
+                        </h3>
+                        <div class="card-2-info-price"><span>from </span>${{t.min_price}}<span>/per</span></div>
+                    </div>
+                    <p>{{t.text|truncatechars:100}}</p>
+                    <div class="card-2-footer">
+                        <div class="card-2-reviews">
+                            <ul class="review-star">
+                                <li class="full-star"><i class="flaticon-star"></i></li>
+                                <li class="full-star"><i class="flaticon-star"></i></li>
+                                <li class="full-star"><i class="flaticon-star"></i></li>
+                                <li class="full-star"><i class="flaticon-star"></i></li>
+                                <li class="full-star"><i class="flaticon-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="card-2-action">
+                            <a href="{% url 'tour' t.pk%}">Explore Tour <i class="flaticon-export"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+</section>
+<!-- Popular Package -->
+<!-- Tour Video -->
+<section class="tour-video-section position-relative">
+    <div class="map-shapes">
+        <div class="map-shape map-shape-2 map-shape-top">
+            <img src="{% static 'assets/images/shapes/map-2.png' %}" alt="shape">
+        </div>
+    </div>
+    <div class="tour-video-contents">
+        <div class="tour-video-item desk-pad-right-70 order-2 order-lg-1">
+            <div class="tour-video-bg">
+                <div class="video-icon">
+                    {%for a in abouts %}
+                    <a href="{{a.video}}" class="video-popup">
+                        {%endfor%}
+                        <i class="flaticon-play"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="tour-video-item tour-video-item-details pt-100 order-1 order-lg-2 tab-pt-0">
+            <div class="max-685 m-auto me-lg-0 ms-lg-0">
+                <div class="section-title section-title-left about-title">
+                    <small>Among The All</small>
+                    <h2>Choose Your Favorite Tour</h2>
+                </div>
+                <div class="about-content-item">
+                    <div class="about-content-thumb">
+                        <i class="flaticon-gallery"></i>
+                    </div>
+                    <div class="about-content-texts">
+                        <h3>We Suggest You The Best Tour Collection</h3>
+                        {%for a in abouts %}
+                        <p>{{a.favorite_text}}</p>
+                        {%endfor%}
+                    </div>
+                </div>
+                <div class="text-center text-lg-start">
+                    <a href="{% url 'tour' %}" class="btn main-btn main-btn-arrow">Look A Tour <i
+                            class="flaticon-right-arrow"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container tour-category">
+        <div class="row">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-blue">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-person-hiking"></i>
+                        <h3>Trekking tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-pink">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <h3>Photo tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-green">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-globe"></i>
+                        <h3>Culture tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-yellow">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-person-biking"></i>
+                        <h3>Multi-active tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-purple">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-car-side"></i>
+                        <h3>Off-road tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-greendark">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-horse-head"></i>
+                        <h3>Horseback tours</h3>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Tour Video -->
+<!-- Testimonial -->
+<section class="testimonial-section image-bg image-bg-1 p-tb-100">
+    <div class="container-fluid position-relative z-index-1">
+        <div class="section-title section-title-white">
+            <small>Testimonials Of The Traveller</small>
+            <h2>Some Good Talk About Us</h2>
+        </div>
+        <div class="testimonial-carousel owl-carousel owl-theme">
+            {% for r in review %}
+            <div class="item">
+                <div class="testimonial-card text-center">
+                    <div class="testimoial-quote">
+                        <i class="flaticon-left-quote"></i>
+                    </div>
+                    <p class="testimonial-feedback">{{r.text}}</p>
+                    <div class="testimonial-client-info">
+                        <ul class="review-star">
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                        </ul>
+                        <h3 class="testimonial-name">{{r.name}}</h3>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+    </div>
+</section>
+<!-- Testimonial -->
+
+<!-- Partner -->
+
+
+<!-- Destination -->
+<section class="destination-section p-tb-100">
+    <div class="container">
+        <div class="section-title">
+            <small>To Get More Tips And Tricks</small>
+            <h2>Read Our Daily Blog</h2>
+        </div>
+        <div class="row">
+            {% for blog in last_three %}
+            <div class="col-sm-6 col-lg-4 pb-30">
+                <div class="destination-card">
+                    <div class="destination-card-image">
+                        <a href="{% url 'blog_detail' blog.id %}">
+                            <img src="{{ blog.second_main_img.image.url }}" alt="destination">
+                        </a>
+                    </div>
+                    <div class="destination-card-content">
+                        <div class="destination-card-header">
+                            <a href="{% url 'blog_detail' blog.id %}">
+                                <h3>{{ blog.main_title }}</h3>
+                            </a>
+                        </div>
+
+
+                        <div class="destination-redirect">
+                            <a href="{% url 'blog_detail' blog.id %}">{{ blog.created_at }} <i
+                                    class="flaticon-export"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+        <div class="text-center">
+            <a href="{% url 'blog' %}" class="btn main-btn main-btn-arrow">Explore Blog <i
+                    class="flaticon-right-arrow"></i></a>
+        </div>
+    </div>
+</section>
+<!-- Destination -->
+{%endblock%}

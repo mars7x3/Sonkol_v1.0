@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block blogs %} active {% endblock %}
+
+{% block page %}
+<!-- Header -->
+<header class="inner-page-header inner-page-header-2">
+    <div class="inner-header-shape"></div>
+    <!-- header-content -->
+    <div class="container">
+        <div class="header-content m-auto">
+            <h1>Blogs</h1>
+
+        </div>
+    </div>
+</header>
+<!-- Header -->
+<!-- Blog -->
+<section class="blog-section pb-100 position-relative">
+    <div class="map-shapes">
+        <div class="map-shape map-shape-1 map-shape-top">
+            <img src="{% static 'assets/images/shapes/map-1.png' %}" alt="shape">
+        </div>
+        <div class="map-shape map-shape-2 map-shape-vertical-center">
+            <img src="{% static 'assets/images/shapes/map-2.png' %}" alt="shape">
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-title">
+            <small>To Get More Tips And Tricks</small>
+            <h2>Read Our Daily Blog</h2>
+        </div>
+
+        <div class="row load-more-gallery">
+            {% for blog in blogs %}
+            <div class="col-md-6 pb-30 more-col-item desk-pad-right-20">
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <a href="{% url 'blog_detail' blog.id %}">
+                            <img src="{{ blog.first_main_img.image.url }}" alt="blog" class="blog-default-image">
+                            <img src="{{ blog.second_main_img.image.url }}" alt="blog" class="blog-hover-image">
+                        </a>
+                    </div>
+                    <div class="blog-card-content">
+                        <ul class="blog-entry">
+                            <li>
+                                <i class="flaticon-calendar"></i>
+                                {{ blog.created_at }}
+                            </li>
+                            <li>
+                                <i class="flaticon-user-1"></i>
+                                {{ blog.author }}
+                            </li>
+                        </ul>
+                        <h3>
+                            <a href="{% url 'blog_detail' blog.id %}">{{ blog.main_title }}</a>
+                        </h3>
+                        <p>{{ blog.main_description|truncatechars:110 }}</p>
+                        <div class="blog-redirect-link">
+                            <a href="{% url 'blog_detail' blog.id %}">Read More <i class="flaticon-export"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Blog -->
+{% endblock %}

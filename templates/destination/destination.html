@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block destination %} active {% endblock %}
+
+{% block page %}
+
+ <!-- Header -->
+        <header class="inner-page-header inner-page-header-1">
+            <div class="inner-header-shape"></div>
+            <!-- header-content -->
+            <div class="container">
+                <div class="header-content m-auto">
+                    <h1>Destinations</h1>
+
+                </div>
+            </div>
+        </header>
+        <!-- Header -->
+
+<!-- Destination -->
+        <section class="destination-section pb-100">
+            <div class="container">
+                <div class="section-title">
+                    <small>The Top Places For</small>
+                    <h2>Planning Your Holiday</h2>
+                </div>
+                <div class="row">
+                    {%for r in region%}
+                    <div class="col-sm-6 col-lg-4 col-xl-4 pb-30">
+                        <div class="destination-card-full">
+                            <div class="destination-card-image">
+                                <img src="{{r.image.url}}" alt="destination">
+                                <h3 class="destination-card-name">{{r.region}}</h3>
+                            </div>
+                            <div class="card-1-content">
+                                <div class="card-1-info">
+                                    <h3>
+                                        <a href="{% url 'destination' r.pk %}">{{r.region}}</a>
+                                    </h3>
+
+                                </div>
+                                <p>{{r.text|truncatechars:80}}</p>
+                            </div>
+                            <div class="destination-card-link">
+                                <a href="{% url 'destination' r.pk %}"><i class="flaticon-export"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                </div>
+                <!-- pagination -->
+
+            </div>
+        </section>
+        <!-- Destination -->
+
+
+{%endblock%}

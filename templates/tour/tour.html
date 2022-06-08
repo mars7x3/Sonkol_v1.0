@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+{% load static %}
+{%block tours%} active {%endblock%}
+
+{%block page%}
+
+
+<!-- Header -->
+
+<!-- Header -->
+<header class="inner-page-header inner-page-header-1">
+    <div class="inner-header-shape"></div>
+    <!-- header-content -->
+    <div class="container">
+        <div class="header-content m-auto">
+            <h1>Tour List</h1>
+
+        </div>
+    </div>
+</header>
+<!-- Header -->
+<!-- Tour -->
+<section class="tour-section pb-100 position-relative">
+
+    <div class="map-shapes">
+        <div class="map-shape map-shape-1 map-shape-top">
+            <img src="{% static 'assets/images/shapes/map-1.png' %}" alt="shape">
+        </div>
+        <div class="map-shape map-shape-2 map-shape-bottom">
+            <img src="{% static 'assets/images/shapes/map-2.png' %}" alt="shape">
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-title section-title-lg">
+            <small>Popular Packages</small>
+            <h2>Amazing Tours Liked By The Adventurous</h2>
+        </div>
+        <div class="row">
+            {% for t in tours %}
+            <div class="col-md-6 col-lg-4 pb-30">
+                <div class="card-2">
+                    <div class="card-2-image">
+                        <a href="{% url 'tour' t.pk %}">
+                            <img src="{{t.image.url}}" alt="tour">
+                        </a>
+                    </div>
+                    <div class="card-2-content">
+                        <ul class="card-2-entry">
+                            <li>
+                                <i class="flaticon-calendar"></i>
+                                {{t.tour_days}} days
+                            </li>
+                        </ul>
+                        <div class="card-2-info">
+                            <h3>
+                                <a href="{% url 'tour' t.pk %}">{{t.title}}</a>
+                            </h3>
+                            <div class="card-2-info-price"><span>from </span>${{t.min_price}}<span>/per</span></div>
+                        </div>
+                        <p>{{t.text|truncatechars:100 }}</p>
+                        <div class="card-2-footer">
+
+                            <div class="card-2-action">
+                                <a href="{% url 'tour' t.pk %}">Explore Tour <i class="flaticon-export"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+        <!-- pagination -->
+        <!--                <nav aria-label="Page navigation example">-->
+        <!--                    <ul class="pagination">-->
+        <!--                        <li class="page-item disabled">-->
+        <!--                            <a class="page-link" href="tour.html" aria-label="Previous">-->
+        <!--                                <i class="flaticon-left-chevron" aria-hidden="true"></i>-->
+        <!--                            </a>-->
+        <!--                        </li>-->
+        <!--                        <li class="page-item active">-->
+        <!--                            <a class="page-link" href="tour.html">1</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="tour.html">2</a>-->
+        <!--                        </li>-->
+        <!--                        <li class="page-item">-->
+        <!--                            <a class="page-link" href="tour.html">3</a>-->
+        <!--                        </li>-->
+        <!--                        <li class="page-item">-->
+        <!--                            <a class="page-link" href="tour.html" aria-label="Next">-->
+        <!--                                <i class="flaticon-right-arrow-angle" aria-hidden="true"></i>-->
+        <!--                            </a>-->
+        <!--                        </li>-->
+        <!--                    </ul>-->
+        <!--                </nav>-->
+    </div>
+
+</section>
+<section class="tour-video-section position-relative pt-100">
+
+    <div class="container tour-category">
+        <div class="row">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-blue">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-person-hiking"></i>
+                        <h3>Trekking tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-pink">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <h3>Photo tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-green">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-globe"></i>
+                        <h3>Culture tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-yellow">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-person-biking"></i>
+                        <h3>Multi-active tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-purple">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-car-side"></i>
+                        <h3>Off-road tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-greendark">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-horse-head"></i>
+                        <h3>Horseback tours</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tour -->
+{%endblock%}
+

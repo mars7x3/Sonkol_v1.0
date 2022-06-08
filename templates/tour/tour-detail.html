@@ -1,0 +1,145 @@
+
+
+
+{% extends 'index.html' %}
+{% load static %}
+{%block tours %} active {%endblock%}
+
+{%block page%}
+
+
+ <!-- Header -->
+        <header class="inner-page-header inner-page-header-1">
+            <div class="inner-header-shape"></div>
+            <!-- header-content -->
+            <div class="container">
+                <div class="header-content m-auto">
+                    <h1>Tour</h1>
+
+                </div>
+            </div>
+        </header>
+        <!-- Header -->
+        <!-- Tour -->
+        <section class="tour-section pt-100 pb-100 position-relative">
+            <div class="map-shapes">
+                <div class="map-shape map-shape-1 map-shape-top">
+                    <img src="{%static 'assets/images/shapes/map-1.png' %}" alt="shape">
+                </div>
+                <div class="map-shape map-shape-2 map-shape-bottom">
+                    <img src="{%static 'assets/images/shapes/map-2.png' %}" alt="shape">
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="details-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="details-card-image-carousel owl-carousel owl-theme default-owl-theme">
+
+                                <div class="item">
+                                    <img src="{{tour.image.url}}" alt="tour">
+                                </div>
+
+                                {% for i in image_tour %}
+                                {% if i.tour.id == tour.id %}
+                                <div class="item">
+                                    <img src="{{i.image.url}}" alt="tour">
+                                </div>
+                                {%endif%}
+                                {%endfor%}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 desk-pad-left-40">
+                            <div class="details-card-content">
+                                <div class="card-2-info">
+                                    <h3>{{tour.title}}</h3>
+                                </div>
+                                <div class="card-2-reviews">
+                                    <ul class="review-star">
+                                        <li class="full-star"><i class="flaticon-star"></i></li>
+                                        <li class="full-star"><i class="flaticon-star"></i></li>
+                                        <li class="full-star"><i class="flaticon-star"></i></li>
+                                        <li class="full-star"><i class="flaticon-star"></i></li>
+                                        <li class="full-star"><i class="flaticon-star"></i></li>
+                                    </ul>
+                                </div>
+                                <p>{{tour.text}}</p>
+                                <div class="details-card-info">
+                                    <h4>Tour Details</h4>
+                                    <div class="details-card-info-list">
+                                        <div class="details-card-list-item">
+                                            <div class="details-card-list-label">Count person</div>
+                                            <div class="details-card-list-texts">{{tour.count_person}} Person In Total</div>
+                                        </div>
+                                        <div class="details-card-list-item">
+                                            <div class="details-card-list-label">Tour days</div>
+                                            <div class="details-card-list-texts">{{tour.tour_days}} days</div>
+                                        </div>
+                                        <div class="details-card-list-item">
+                                            <div class="details-card-list-label">Starting session</div>
+                                            <div class="details-card-list-texts">from {{tour.start_session}}</div>
+                                        </div>
+                                        <div class="details-card-list-item">
+                                            <div class="details-card-list-label">Ending session</div>
+                                            <div class="details-card-list-texts">to {{tour.finish_session}}</div>
+                                        </div>
+                                        <h4>Price</h4>
+                                        {% for p in price %}
+                                        {% if p.tour.id == tour.id %}
+
+                                        <div class="details-card-list-item">
+                                            <div class="details-card-list-label">For {{p.person}} person</div>
+                                            <div class="details-card-list-texts">{{p.price}} $</div>
+                                        </div>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Tour -->
+
+
+         <!-- Accordion -->
+         <section class="accordion-section pb-100 position-relative">
+            <div class="map-shapes">
+                <div class="map-shape map-shape-1 map-shape-top">
+                    <img src="{%static 'assets/images/shapes/map-1.png' %}" alt="shape">
+                </div>
+                <div class="map-shape map-shape-2 map-shape-top">
+                    <img src="{% static 'assets/images/shapes/map-2.png' %}" alt="shape">
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="accordion box-width-680 m-auto" id="accordionExample">
+                    {%for d in day %}
+                    {% if tour.id == d.tour.id %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{d.id}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{d.id}}" aria-expanded="false" aria-controls="collapse{{d.id}}">
+                                {{d.title}}
+                            </button>
+                        </h2>
+                        <div id="collapse{{d.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{d.id}}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {{d.text}}
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+
+                </div>
+            </div>
+        </section>
+        <!-- Accordion -->
+
+ {%endblock%}

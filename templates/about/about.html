@@ -1,0 +1,186 @@
+{% extends 'index.html' %}
+{% load static %}
+{%block about%} active {% endblock %}
+{%block about_us%} active {% endblock %}
+
+
+{%block page%}
+
+<!-- Header -->
+<header class="inner-page-header inner-page-header-1">
+    <div class="inner-header-shape"></div>
+    <!-- header-content -->
+    <div class="container">
+        <div class="header-content m-auto">
+            <h1>About Us</h1>
+
+        </div>
+    </div>
+</header>
+<!-- Header -->
+<!-- About -->
+<section class="about-section position-relative pb-70">
+    <div class="map-shapes">
+        <div class="map-shape map-shape-1 map-shape-top">
+            <img src="{% static 'assets/images/shapes/map-1.png' %}" alt="shape">
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-title">
+            <small>Who We Are</small>
+            <h2>Know More About Ourselves</h2>
+        </div>
+        {% for a in abouts %}
+        <div class="row align-items-center">
+            <div class="col-lg-6 pb-30">
+                <div class="about-content-details desk-pad-right-40">
+                    <h3>{{a.title}}</h3>
+                    <p>{{a.text}}</p>
+
+                </div>
+            </div>
+            <div class="col-lg-6 pb-30">
+                <div class="about-content-image border-radius-10">
+                    <img src="{{a.image.url}}" alt="image">
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</section>
+<!-- About -->
+
+
+<!-- Tour Video -->
+<section class="tour-video-section position-relative pt-100">
+    <div class="map-shapes">
+        <div class="map-shape map-shape-2 map-shape-top">
+            <img src="{% static 'assets/images/shapes/map-2.png' %}" alt="shape">
+        </div>
+    </div>
+    <div class="tour-video-contents">
+        <div class="tour-video-item desk-pad-right-70 order-2 order-lg-1">
+            <div class="tour-video-bg">
+                <div class="video-icon">
+                    {%for a in abouts %}
+                    <a href="{{a.video}}" class="video-popup">
+                        {%endfor%}
+                        <i class="flaticon-play"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="tour-video-item tour-video-item-details pt-100 order-1 order-lg-2 tab-pt-0">
+            <div class="max-685 m-auto me-lg-0 ms-lg-0">
+                <div class="section-title section-title-left about-title">
+                    <small>Among The All</small>
+                    <h2>Choose Your Favorite Tour</h2>
+                </div>
+                <div class="about-content-item">
+                    <div class="about-content-thumb">
+                        <i class="flaticon-gallery"></i>
+                    </div>
+                    <div class="about-content-texts">
+                        <h3>We Suggest You The Best Tour Collection</h3>
+                        {%for a in abouts %}
+                        <p>{{a.favorite_text}}</p>
+                        {%endfor%}
+                    </div>
+                </div>
+                <div class="text-center text-lg-start">
+                    <a href="{% url 'tour' %}" class="btn main-btn main-btn-arrow">Look A Tour <i
+                            class="flaticon-right-arrow"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container tour-category">
+        <div class="row">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-blue">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-person-hiking"></i>
+                        <h3>Trekking tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-pink">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <h3>Photo tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-green">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-globe"></i>
+                        <h3>Culture tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-yellow">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-person-biking"></i>
+                        <h3>Multi-active tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-purple">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-car-side"></i>
+                        <h3>Off-road tours</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-2 pt-30">
+                <div class="tour-category-card tour-category-card-greendark">
+                    <a href="{% url 'tour' %}">
+                        <i class="fa-solid fa-horse-head"></i>
+                        <h3>Horseback tours</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Tour Video -->
+
+<!-- Testimonial -->
+<section class="testimonial-section image-bg image-bg-1 p-tb-100">
+    <div class="container-fluid position-relative z-index-1">
+        <div class="section-title section-title-white">
+            <small>Testimonials Of The Traveller</small>
+            <h2>Some Good Talk About Us</h2>
+        </div>
+        <div class="testimonial-carousel owl-carousel owl-theme">
+            {%for r in review %}
+            <div class="item">
+                <div class="testimonial-card text-center">
+                    <div class="testimoial-quote">
+                        <i class="flaticon-left-quote"></i>
+                    </div>
+                    <p class="testimonial-feedback">{{r.text}}</p>
+                    <div class="testimonial-client-info">
+                        <ul class="review-star">
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                            <li class="full-star"><i class="flaticon-star"></i></li>
+                        </ul>
+                        <h3 class="testimonial-name">{{r.name}}</h3>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+    </div>
+</section>
+<!-- Testimonial -->
+
+{%endblock%}

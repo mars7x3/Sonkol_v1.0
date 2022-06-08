@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block blogs %} active {% endblock %}
+
+{% block page %}
+<!-- Header -->
+<header class="inner-page-header inner-page-header-3">
+    <div class="inner-header-shape"></div>
+    <!-- header-content -->
+    <div class="container">
+        <div class="header-content m-auto">
+            <h1>Blog</h1>
+        </div>
+    </div>
+</header>
+<!-- Header -->
+<!-- Blog -->
+<div class="blog-section pt-100 pb-70 position-relative">
+    <div class="map-shapes">
+        <div class="map-shape map-shape-1 map-shape-top">
+            <img src="{% static 'assets/images/shapes/map-1.png' %}" alt="shape">
+        </div>
+        <div class="map-shape map-shape-2 map-shape-vertical-center">
+            <img src="{% static 'assets/images/shapes/map-2.png' %}" alt="shape">
+        </div>
+    </div>
+    <div class="container">
+        <div class="forum-main-image">
+            <a href="{{ blog.first_main_img.image.url }}">
+            <img src="{{ blog.first_main_img.image.url }}" alt="blog">
+                </a>
+            <ul class="blog-entry">
+                <li>
+                    <i class="flaticon-calendar"></i>
+                    {{ blog.created_at }}
+                </li>
+                <li>
+                    <i class="flaticon-user-1"></i>
+                    {{ blog.author }}
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 pb-30 desk-pad-right-40">
+                <article>
+                    <div class="forum-details">
+                        <h3>{{ blog.main_title }}</h3>
+                        <p> {{ blog.main_description }}</p>
+                        {% for description in blog.single_descriptions_up %}
+                            <p>{{ description }}</p>
+                        {% endfor %}
+                        <div class="row">
+                            {% for img in blog.single_images %}
+                            <div class="col-6 col-sm-4 col-lg-4">
+                                <div class="forum-details-inner-image">
+                                    <a href="{{ img.image.url }}">
+                                    <img src="{{ img.image.url }}" alt="destination">
+                                        </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% for description in blog.single_descriptions_after_img %}
+                            <p>{{description}}</p>
+                        {% endfor %}
+                        <h4>{{ blog.single_title }}</h4>
+                        <ul>
+                            {% for item in blog.list_descriptions %}
+                                <li>{{ item.description }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% for description in blog.single_descriptions_after_img %}
+                            <p>{{description}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="blog-article-actions"></div>
+                </article>
+            </div>
+
+            <div class="col-lg-3 pb-30">
+                <div class="sidebar-item">
+                    <h3>Latest Article</h3>
+                    <div class="sidebar-recent-post">
+                        {% for r_blog in last_three %}
+                            <div class="recent-post-card">
+                                <div class="recent-post-thumb">
+                                    <a href="{% url 'blog_detail' r_blog.id %}">
+                                        <img src="{{ r_blog.first_main_img.image.url }}" alt="blog">
+                                    </a>
+                                </div>
+                                <div class="recent-post-content">
+                                    <h3>
+                                        <a href="{% url 'blog_detail' r_blog.id %}">{{ r_blog.main_title }}</a>
+                                    </h3>
+                                    <ul class="blog-entry">
+                                        <li>
+                                            <i class="flaticon-calendar"></i>
+                                            {{ r_blog.created_at }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog -->
+{% endblock %}
